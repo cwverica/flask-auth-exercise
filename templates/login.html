@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<div class="container-md col-6-lg" style="max-width: 25rem;">
+    <form id="add-pet-form" method="POST">
+        {{ form.hidden_tag() }}
+
+        {% for field in form
+        if field.widget.input_type != 'hidden' %}
+        <div class="form-group">
+
+            {{ field.label }}
+            {{ field(class_="form-control") }}
+
+            {% for error in field.errors %}
+            <small class="form-text text-muted">
+                {{ error }}
+            </small>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <br>
+        <button class="btn btn-success btn-lg" type="submit">Submit</button>
+        <a href="/" class="btn btn-secondary btn-sm">Cancel</a>
+    </form>
+    <span class="text-muted">Not yet registered? Head <a href="/register">here.</a></span>
+</div>
+
+
+{% endblock %}

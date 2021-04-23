@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} {{user.username}}'s Page {% endblock %}
+
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{user.username}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{user.full_name()}}</h6>
+        <p class="card-text">{{user.email}}</p>
+    </div>
+</div>
+
+<a class='btn btn-info' href="/users/{{user.username}}/feedback/add">Leave Feedback</a>
+<br>
+{% if user.feedback %}
+<div class="user-feedback">
+    {% for entry in user.feedback %}
+    <span id="{{entry.id}}">
+        <a href="/feedback/{{entry.id}}/update">
+            <h6>{{entry.title}}</h6>
+        </a>
+        <br>
+        {{entry.content}}
+    </span>
+    <br>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
