@@ -13,7 +13,7 @@ app.debug = False
 
 connect_db(app)
 
-app.config['SECRET_KEY'] = os.eviron.get("SECRET_KEY", "notsosecretIguess")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "notsosecretIguess")
 debug = DebugToolbarExtension(app)
 
 
