@@ -17,13 +17,17 @@
 {% if user.feedback %}
 <div class="user-feedback">
     {% for entry in user.feedback %}
-    <span id="{{entry.id}}">
-        <a href="/feedback/{{entry.id}}/update">
-            <h6>{{entry.title}}</h6>
-        </a>
-        <br>
-        {{entry.content}}
-    </span>
+    <div id={{entry.id}} class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="/feedback/{{entry.id}}/update">
+                    {{entry.title}}
+                </a>
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{entry.user.full_name()}}</h6>
+            <p class="card-text">{{entry.content}}</p>
+        </div>
+    </div>
     <br>
     {% endfor %}
 </div>
