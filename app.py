@@ -2,17 +2,18 @@ from flask import Flask, flash, request, redirect, render_template, session
 from models import db, connect_db, User, Feedback
 from forms import RegistrationForm, LoginForm, FeedbackForm
 from flask_debugtoolbar import DebugToolbarExtension
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///user_auth'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
-app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = True
-app.debug = True
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+app.debug = False
 
 connect_db(app)
 
-app.config['SECRET_KEY'] = "thisismySECRETcode!"
+app.config['SECRET_KEY'] = os.eviron.get("SECRET_KEY", "notsosecretIguess")
 debug = DebugToolbarExtension(app)
 
 
